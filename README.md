@@ -60,7 +60,7 @@ docker-compose --version
 
 ```bash
 # Repository'yi klonlayın veya dizine gidin
-cd super-mario_game-code
+cd super-mario-game
 
 # Container'ı başlatın
 docker-compose up -d
@@ -87,10 +87,10 @@ docker run -d -p 8080:80 --name fullscreenmario fullscreenmario:latest
 ```bash
 # Git ile klonlayın (eğer repository'deyse)
 git clone <repository-url>
-cd super-mario_game-code
+cd super-mario-game
 
 # Veya dizine doğrudan gidin
-cd /path/to/super-mario_game-code
+cd /path/to/super-mario-game
 ```
 
 ### 2. Docker Image Oluşturun
@@ -128,14 +128,71 @@ docker run -d -p 3000:80 --name fullscreenmario fullscreenmario:latest
 
 ## 🎯 Kullanım
 
+### Kullanım Yöntemleri
+
+Bu projeyi çalıştırmak için 3 farklı yöntem bulunmaktadır:
+
+#### Yöntem 1: Docker ile (Önerilen - Production)
+
+```bash
+# Container'ı başlat
+docker-compose up -d
+
+# Tarayıcıda aç
+http://localhost:8080
+```
+
+**Avantajlar:**
+- ✅ Nginx ile optimize edilmiş
+- ✅ Gzip sıkıştırma
+- ✅ Cache yönetimi
+- ✅ Health check
+- ✅ Production'a hazır
+
+#### Yöntem 2: Docker Olmadan (Geliştirme)
+
+```bash
+# Basit bir HTTP server başlatın
+cd FullScreenMario
+
+# Python 3 ile
+python3 -m http.server 8080
+
+# veya Node.js ile
+npx http-server -p 8080
+
+# veya PHP ile
+php -S localhost:8080
+```
+
+Sonra tarayıcıda: `http://localhost:8080`
+
+**Avantajlar:**
+- ✅ Hızlı geliştirme
+- ✅ Dosya değişikliklerini anında görme
+- ✅ Debug kolaylığı
+
+#### Yöntem 3: Doğrudan Dosya Açma (En Basit)
+
+```bash
+# Sadece HTML dosyasını doğrudan açın
+open FullScreenMario/index.html
+# veya
+open FullScreenMario/mario.html
+```
+
+**Not:** Bu yöntemde bazı özellikler çalışmayabilir (CORS kısıtlamaları nedeniyle).
+
 ### Oyunu Çalıştırma
+
+#### Docker ile:
 
 1. Container başlatıldıktan sonra, tarayıcınızda şu adresi açın:
    ```
    http://localhost:8080
    ```
 
-2. Veya `index.html` ile doğrudan:
+2. Oyun seçimi ekranı için:
    ```
    http://localhost:8080/index.html
    ```
@@ -144,6 +201,26 @@ docker run -d -p 3000:80 --name fullscreenmario fullscreenmario:latest
    ```
    http://localhost:8080/mario.html
    ```
+
+4. Seviye editörü için:
+   ```
+   http://localhost:8080/editor.js
+   ```
+   (Browser console'dan kullanılır)
+
+5. Harita parser aracı için:
+   ```
+   http://localhost:8080/parser/parser.html
+   ```
+
+#### Geliştirme Modunda:
+
+Yerel HTTP server kullanıyorsanız, aynı URL'ler geçerlidir:
+```
+http://localhost:8080/index.html
+http://localhost:8080/mario.html
+http://localhost:8080/parser/parser.html
+```
 
 ### Container Yönetimi
 
@@ -208,21 +285,215 @@ docker inspect fullscreenmario --format='{{json .State.Health}}' | python3 -m js
 ## 📁 Proje Yapısı
 
 ```
-super-mario_game-code/
-├── FullScreenMario/          # Oyun kaynak dosyaları
-│   ├── index.html            # Ana giriş sayfası
-│   ├── mario.html            # Oyun ana sayfası
-│   ├── mario.js              # Oyun ana mantığı
-│   ├── Maps/                 # Oyun haritaları (World 1-8)
-│   ├── Sounds/               # Ses dosyaları (mp3, ogg)
-│   ├── Fonts/                # Oyun fontları
-│   └── ...                   # Diğer oyun dosyaları
-├── Dockerfile                # Alpine tabanlı Dockerfile (önerilen)
-├── Dockerfile.centos         # CentOS tabanlı Dockerfile (alternatif)
-├── docker-compose.yml        # Docker Compose yapılandırması
-├── .dockerignore            # Docker build ignore dosyası
-└── README.md                # Bu dosya
+super-mario-game/
+├── FullScreenMario/                    # Oyun kaynak dosyaları (tüm kodlar burada)
+│   ├── index.html                     # Ana giriş sayfası / oyun seçimi
+│   ├── mario.html                     # Ana oyun sayfası
+│   ├── mario.js                       # Oyun ana mantığı ve motoru
+│   ├── mario.css                      # Oyun stil dosyası
+│   ├── data.js                        # Oyun veri tanımlamaları
+│   ├── editor.js                      # Seviye editörü
+│   ├── generator.js                   # Harita üretici
+│   ├── library.js                     # Yardımcı kütüphane fonksiyonları
+│   ├── load.js                        # Dosya yükleme işlemleri
+│   ├── maps.js                        # Harita yönetim sistemi
+│   ├── sounds.js                      # Ses yönetim sistemi
+│   ├── sprites.js                     # Sprite ve görsel yönetimi
+│   ├── things.js                      # Oyun nesneleri tanımlamaları
+│   ├── triggers.js                    # Tetikleyici sistemleri
+│   ├── ui.js                          # Kullanıcı arayüzü
+│   ├── upkeep.js                      # Oyun döngü yönetimi
+│   ├── utility.js                     # Yardımcı fonksiyonlar
+│   ├── EventHandlr.js                 # Olay yönetim sistemi
+│   ├── gamepad.js                     # Gamepad desteği
+│   ├── quadrants.js                   # Ekran bölümleme sistemi
+│   ├── toned.js                       # Ses tonları ve müzik
+│   ├── default.css                    # Varsayılan stil dosyası
+│   ├── README.md.txt                  # Oyun dokümantasyonu
+│   │
+│   ├── Maps/                          # Oyun haritaları (32 seviye)
+│   │   ├── World12.js                 # World 1-2
+│   │   ├── World13.js                 # World 1-3
+│   │   ├── World14.js                 # World 1-4
+│   │   ├── World21.js                 # World 2-1
+│   │   ├── ...                        # World 2-2, 2-3, 2-4, 3-1, ..., 8-4
+│   │   └── World84.js                 # World 8-4 (Son seviye)
+│   │
+│   ├── Sounds/                        # Ses dosyaları
+│   │   ├── mp3/                       # MP3 format ses efektleri
+│   │   │   ├── Coin.mp3               # Para alma sesi
+│   │   │   ├── Jump Small.mp3         # Küçük zıplama
+│   │   │   ├── Jump Super.mp3         # Süper zıplama
+│   │   │   ├── Powerup.mp3            # Güçlendirme
+│   │   │   ├── Mario Dies.mp3         # Ölüm sesi
+│   │   │   └── ...                    # Diğer efektler
+│   │   ├── ogg/                       # OGG format ses efektleri
+│   │   │   └── ...                    # Aynı efektler OGG formatında
+│   │   └── Themes/                    # Arka plan müzikleri
+│   │       ├── mp3/                   # MP3 format müzikler
+│   │       │   ├── Overworld.mp3       # Dünya müziği
+│   │       │   ├── Underworld.mp3     # Yeraltı müziği
+│   │       │   ├── Castle.mp3         # Kale müziği
+│   │       │   └── ...                # Diğer temalar
+│   │       └── ogg/                   # OGG format müzikler
+│   │
+│   ├── Fonts/                         # Web fontları
+│   │   ├── pressstart2p-webfont.*     # Press Start 2P fontu
+│   │   ├── super_plumber_brothers-*    # Super Plumber Brothers fontu
+│   │   └── specimen_files/            # Font örnek dosyaları
+│   │
+│   ├── Theme/                         # UI görselleri
+│   │   ├── Header.gif                 # Başlık görseli
+│   │   ├── Mario.gif                  # Mario karakter görseli
+│   │   ├── Beta.png                   # Beta etiketi
+│   │   └── *.gif                      # Diğer UI butonları
+│   │
+│   ├── parser/                        # Harita parser aracı
+│   │   ├── parser.html                # Parser arayüzü
+│   │   ├── parser.js                  # Parser mantığı
+│   │   └── parser.css                 # Parser stilleri
+│   │
+│   └── src/                           # Kaynak modüller
+│       └── TimeHandlr/                # Zaman yönetim modülü
+│           ├── TimeHandlr.js          # Zaman yönetim mantığı
+│           └── README.md               # Modül dokümantasyonu
+│
+├── Dockerfile                         # Alpine tabanlı Dockerfile (önerilen)
+├── docker-compose.yml                 # Docker Compose yapılandırması
+└── README.md                          # Bu dosya
 ```
+
+### 📝 Dosya Açıklamaları
+
+#### Ana Dosyalar
+
+| Dosya | Açıklama | Kullanım |
+|-------|----------|----------|
+| `index.html` | Oyun seçim ve başlatma ekranı | Ana giriş sayfası, seviye seçimi |
+| `mario.html` | Ana oyun sayfası | Oyun burada çalışır |
+| `mario.js` | Oyun motoru ve ana mantık | Fizik, çarpışma, oyun döngüsü |
+| `mario.css` | Oyun görsel stilleri | UI ve görsel tasarım |
+| `data.js` | Oyun veri tanımlamaları | Karakter, nesne özellikleri |
+
+#### Oyun Motoru Dosyaları
+
+| Dosya | Açıklama | İşlev |
+|-------|----------|-------|
+| `library.js` | Yardımcı kütüphane | Genel kullanım fonksiyonları |
+| `load.js` | Dosya yükleme sistemi | Harita, ses, görsel yükleme |
+| `maps.js` | Harita yönetim sistemi | Harita yükleme ve işleme |
+| `sounds.js` | Ses yönetim sistemi | Ses efektleri ve müzik kontrolü |
+| `sprites.js` | Sprite yönetimi | Karakter ve nesne görselleri |
+| `things.js` | Oyun nesneleri | Tüm oyun nesnelerinin tanımları |
+| `triggers.js` | Tetikleyici sistemi | Olay ve tetikleyici yönetimi |
+| `ui.js` | Kullanıcı arayüzü | Menü, skor, can gösterimi |
+| `upkeep.js` | Oyun döngü yönetimi | Game loop ve frame yönetimi |
+| `utility.js` | Yardımcı fonksiyonlar | Matematik, string işlemleri |
+| `EventHandlr.js` | Olay yönetim sistemi | Event listener ve handler |
+| `gamepad.js` | Gamepad desteği | Joystick/gamepad kontrolü |
+| `quadrants.js` | Ekran bölümleme | Viewport ve kamera yönetimi |
+| `toned.js` | Ses tonları | Müzik ve ses efekt tonları |
+
+#### Araçlar ve Editörler
+
+| Dosya/Klasör | Açıklama | Kullanım |
+|--------------|----------|----------|
+| `editor.js` | Seviye editörü | Yeni haritalar oluşturmak için |
+| `generator.js` | Harita üretici | Otomatik harita oluşturma |
+| `parser/` | Harita parser | Harita formatı dönüştürme aracı |
+
+#### Klasör Yapıları
+
+**Maps/** - 32 Oyun Haritası
+- Her dosya bir seviyeyi temsil eder
+- Format: `WorldXY.js` (X=Dünya, Y=Seviye)
+- Örnek: `World12.js` = World 1, Level 2
+- Toplam: 8 dünya × 4 seviye = 32 harita
+
+**Sounds/** - Ses Dosyaları
+- `mp3/` ve `ogg/`: Çoklu format desteği
+- `Themes/`: Arka plan müzikleri (Overworld, Underworld, Castle, vb.)
+- Efektler: Jump, Coin, Powerup, Game Over, vb.
+
+**Fonts/** - Web Fontları
+- `pressstart2p`: Retro oyun fontu
+- `super_plumber_brothers`: Özel Mario fontu
+- Web font formatları: `.woff`, `.ttf`, `.eot`, `.svg`
+
+**Theme/** - UI Görselleri
+- GIF formatında butonlar ve ikonlar
+- Header, Mario karakteri, UI elemanları
+
+### 🔧 Geliştirme ve Kod Düzenleme
+
+#### Dosyaları Düzenlemek İçin
+
+1. **Oyun Mantığını Değiştirme:**
+   - `mario.js`: Fizik, hareket, çarpışma sistemi
+   - `things.js`: Yeni nesneler eklemek için
+   - `triggers.js`: Yeni tetikleyiciler için
+
+2. **Görsel Değişiklikler:**
+   - `mario.css`: Stil değişiklikleri
+   - `Theme/`: UI görsellerini değiştir
+   - `sprites.js`: Sprite tanımlarını değiştir
+
+3. **Ses Değişiklikleri:**
+   - `Sounds/` klasörüne yeni ses dosyaları ekle
+   - `sounds.js`: Ses yükleme ve çalma mantığı
+   - `toned.js`: Müzik tonları ve efektler
+
+4. **Yeni Harita Oluşturma:**
+   ```bash
+   # Harita editörünü kullan
+   http://localhost:8080/parser/parser.html
+   
+   # Veya yeni bir WorldXY.js dosyası oluştur
+   cp FullScreenMario/Maps/World12.js FullScreenMario/Maps/World91.js
+   # Sonra düzenle
+   ```
+
+5. **Değişiklikleri Test Etme:**
+   ```bash
+   # Docker ile çalışıyorsanız
+   docker-compose restart
+   
+   # Veya geliştirme modunda (HTTP server)
+   # Dosyayı kaydedin, tarayıcıyı yenileyin
+   ```
+
+#### Önemli Dosyalar ve Değiştirme İpuçları
+
+| Dosya | Ne Zaman Değiştirilir | Dikkat Edilmesi Gerekenler |
+|-------|----------------------|---------------------------|
+| `mario.js` | Fizik/hareket değişikliği | Oyun döngüsünü bozmamaya dikkat |
+| `things.js` | Yeni nesne ekleme | Mevcut nesne formatını koruyun |
+| `maps.js` | Harita sistemi değişikliği | Mevcut harita formatını koruyun |
+| `sounds.js` | Ses sistemi | Dosya yollarını kontrol edin |
+| `ui.js` | Arayüz değişikliği | CSS ile uyumlu olmalı |
+| `data.js` | Oyun verileri | Veri yapısını koruyun |
+
+#### Docker Olmadan Geliştirme (Önerilen)
+
+```bash
+# 1. FullScreenMario klasörüne gidin
+cd FullScreenMario
+
+# 2. HTTP server başlatın
+python3 -m http.server 8080
+
+# 3. Tarayıcıda açın
+open http://localhost:8080
+
+# 4. Dosyaları düzenleyin (VS Code, Atom, vb.)
+# 5. Tarayıcıyı yenileyin (Ctrl+R veya Cmd+R)
+# 6. Değişiklikleri görün
+```
+
+**Avantajlar:**
+- ✅ Hızlı değişiklik-test döngüsü
+- ✅ Hot reload benzeri deneyim
+- ✅ Debug kolaylığı (Browser DevTools)
 
 ## 🐳 Docker Images
 
