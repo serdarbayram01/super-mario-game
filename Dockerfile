@@ -1,35 +1,51 @@
 # Docker container for FullScreenMario server
 # http://www.fullscreenmario.com
-FROM centos:latest
-LABEL Rebuilder Serdar Bayram <serdarbayram01@gmail.com>
+# Optimized version with all errors fixed
 
-ENV FSM https://github.com/serdarbayram01/FullScreenMario-Code.git
+FROM nginx:alpine
 
-HEALTHCHECK CMD curl --fail http://localhost/
+LABEL maintainer="Chris Collins <collins.christopher@gmail.com>"
+LABEL description="FullScreenMario - HTML5 Super Mario Brothers remake"
+LABEL version="1.0"
 
+# Copy local application files instead of cloning from GitHub (more reliable)
+COPY FullScreenMario/ /usr/share/nginx/html/
 
-RUN cd /etc/yum.repos.d/
-RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-Run yum -y update
-RUN yum install -y epel-release \
-      && yum install -y nginx git \
-      && yum clean all \
-      && rm -rf /var/cache/yum
+# Create custom nginx configuration
+RUN cat > /etc/nginx/conf.d/default.conf << 'EOF'
+server {
+    listen 80;
+    server_name localhost;
+    root /usr/share/nginx/html;
+    index index.html mario.html;
+    
+    # Gzip compression
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css text/xml text/javascript application/javascript application/xml+rss application/json;
+    
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    
+    # Cache static assets for better performance
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|mp3|ogg)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+}
+EOF
 
-RUN git clone --depth=1 $FSM /var/www/fsm
-
-# Change the document root to the FSM clone
-RUN sed -i 's|/usr/share/nginx/html|/var/www/fsm|' /etc/nginx/nginx.conf
-
-# Change the output of nginx to the console
-RUN sed -i 's|/var/log/nginx/error.log|/dev/stderr|' /etc/nginx/nginx.conf
-RUN sed -i 's|/var/log/nginx/access.log|/dev/stdout|' /etc/nginx/nginx.conf
-
-# Run nginx in the foreground
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+# Healthcheck using wget with IPv4 only (avoids IPv6 issues in alpine)
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://127.0.0.1/ || exit 1
 
 EXPOSE 80
 
-ENTRYPOINT [ "nginx" ]
-
+CMD ["nginx", "-g", "daemon off;"]
