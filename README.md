@@ -50,7 +50,7 @@ FullScreenMario, orijinal Super Mario Brothers oyununun modern tarayıcılar iç
   <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-8-1.gif" width="200">
   <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-8-2.gif" width="200">
   <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-8-3.gif" width="200"><br/>
-  <i>PPO ile eğitilmiş ajanın performans gösterimleri - 31/32 seviye tamamlandı</i>
+ 
 </p>
 
 ## 📋 Gereksinimler
