@@ -1,0 +1,18 @@
+# Backup and copy files
+* copy.md
+* copy.*
+README copy.md
+*.copy
+*.bak
+*.backup
+
+# macOS
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
