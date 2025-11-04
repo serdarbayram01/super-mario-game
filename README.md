@@ -37,7 +37,7 @@ FullScreenMario, orijinal Super Mario Brothers oyununun modern tarayıcılar iç
 ### Docker Compose ile
 
 ```bash
-cd FullScreenMario
+cd super-mario-game
 docker-compose up -d
 ```
 
@@ -46,7 +46,7 @@ Oyun şu adresten erişilebilir: `http://localhost:8090`
 ### Docker ile
 
 ```bash
-cd FullScreenMario
+cd super-mario-game
 docker build -t serdarbayram/supermario:latest .
 docker run -d -p 8090:80 --name supermario --restart unless-stopped serdarbayram/supermario:latest
 ```
@@ -72,20 +72,19 @@ ports:
 ### Image Build
 
 ```bash
-cd FullScreenMario
+cd super-mario-game
 docker build -t serdarbayram/supermario:latest .
 ```
 
 ## 📦 Proje Yapısı
 
 ```
-Test/super-mario-game/
+super-mario-game/
+├── Dockerfile              # Docker image tanımı
+├── docker-compose.yml      # Docker Compose yapılandırması
 └── FullScreenMario/
-    ├── Dockerfile              # Docker image tanımı
-    ├── docker-compose.yml      # Docker Compose yapılandırması
-    ├── nginx.conf              # Nginx yapılandırması
-    ├── .dockerignore           # Docker ignore dosyası
-    └── [Oyun dosyaları]         # HTML, CSS, JS dosyaları
+    ├── nginx.conf          # Nginx yapılandırması
+    └── [Oyun dosyaları]     # HTML, CSS, JS dosyaları
 ```
 
 ## 🐳 Docker Image
@@ -124,7 +123,8 @@ docker exec -it supermario wget -O- http://localhost/
 ## 📝 Notlar
 
 - Tüm uygulama dosyaları `FullScreenMario` dizini içindedir
-- Dockerfile ve docker-compose.yml dosyaları `FullScreenMario` dizininde bulunur
+- Dockerfile ve docker-compose.yml dosyaları `super-mario-game` dizininde bulunur
+- Docker build context olarak `super-mario-game` dizini kullanılır
 - Image adı: `supermario`
 - Image tag: `serdarbayram/supermario:latest`
 
