@@ -16,6 +16,43 @@ FullScreenMario, orijinal Super Mario Brothers oyununun modern tarayıcılar iç
 
 **Orijinal Proje:** [FullScreenMario](http://www.fullscreenmario.com)
 
+## 🎬 Demo Animasyonları
+
+<p align="left">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-1-1.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-1-2.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-1-3.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-1-4.gif" width="200"><br/>
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-2-1.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-2-2.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-2-3.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-2-4.gif" width="200"><br/>
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-3-1.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-3-2.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-3-3.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-3-4.gif" width="200"><br/>
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-4-1.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-4-2.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-4-3.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-4-4.gif" width="200"><br/>
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-5-1.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-5-2.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-5-3.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-5-4.gif" width="200"><br/>
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-6-1.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-6-2.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-6-3.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-6-4.gif" width="200"><br/>
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-7-1.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-7-2.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-7-3.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-7-4.gif" width="200"><br/>
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-8-1.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-8-2.gif" width="200">
+  <img src="https://raw.githubusercontent.com/vietnh1009/Super-mario-bros-PPO-pytorch/master/demo/video-8-3.gif" width="200"><br/>
+  <i>PPO ile eğitilmiş ajanın performans gösterimleri - 31/32 seviye tamamlandı</i>
+</p>
+
 ## 📋 Gereksinimler
 
 ### Sistem Gereksinimleri
