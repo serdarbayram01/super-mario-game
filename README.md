@@ -2,6 +2,16 @@
 
 Klasik Super Mario Brothers oyununun HTML5 ile geliştirilmiş tam ekran versiyonunu Docker konteynerinde çalıştırmak için hazırlanmış projedir.
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Docker-20.10+-2496ED?logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/Docker%20Compose-2.0+-2496ED?logo=docker&logoColor=white" alt="Docker Compose">
+  <img src="https://img.shields.io/badge/Nginx-1.21+-009639?logo=nginx&logoColor=white" alt="Nginx">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black" alt="JavaScript">
+  <img src="https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey" alt="Platform">
+  <img src="https://img.shields.io/badge/License-Educational%20Use-blue?logo=open-source-initiative&logoColor=white" alt="License">
+</p>
+
 ## 📋 Proje Hakkında
 
 FullScreenMario, orijinal Super Mario Brothers oyununun modern tarayıcılar için geliştirilmiş HTML5 remake versiyonudur. Bu proje, oyunu Docker konteynerinde çalıştırarak kolay dağıtım ve yönetim sağlar.
